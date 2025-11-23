@@ -2,6 +2,8 @@ import { View, Text } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { PieChart } from "react-native-chart-kit";
+import { ScrollView } from "react-native";
+
 
 
 
@@ -144,29 +146,30 @@ let pieData = Object.keys(categoryTotals).map((cat) => ({
 
       <Text style={{ fontSize: 24, marginBottom: 20 }}>Kayıtlı Seanslar</Text>
 
-      {sessions.length === 0 ? (
-        <Text>Henüz kayıt yok.</Text>
-      ) : (
-        sessions.map((session, index) => (
-          <View
-            key={index}
-            style={{
-              padding: 10,
-              marginBottom: 10,
-              backgroundColor: "#eee",
-              borderRadius: 5,
-            }}
-          >
-            <Text>Kategori: {session.category}</Text>
-            <Text>
-  Süre: {Math.floor(session.duration / 60)} dk {session.duration % 60} sn
-</Text>
+    <ScrollView style={{ flex: 1, marginBottom: 40 }}>
+  {sessions.length === 0 ? (
+    <Text>Henüz kayıt yok.</Text>
+  ) : (
+    sessions.map((session, index) => (
+      <View
+        key={index}
+        style={{
+          padding: 10,
+          marginBottom: 10,
+          backgroundColor: "#eee",
+          borderRadius: 5,
+        }}
+      >
+        <Text>Kategori: {session.category}</Text>
+        <Text>Süre: {Math.floor(session.duration / 60)} dk {session.duration % 60} sn</Text>
+        <Text>Dikkat Dağınıklığı: {session.distractions}</Text>
+        <Text>Tarih: {session.date}</Text>
+      </View>
+    ))
+  )}
+</ScrollView>
 
-            <Text>Dikkat Dağınıklığı: {session.distractions}</Text>
-            <Text>Tarih: {session.date}</Text>
-          </View>
-        ))
-      )}
+
     </View>
   );
 }
