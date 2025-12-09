@@ -11,9 +11,12 @@ export default function App() {
 
   const [sessions, setSessions] = useState([]);
 
+  
   return (
     <NavigationContainer>
       <Tab.Navigator>
+
+        
         <Tab.Screen
           name="Home"
           options={{ title: "Zamanlayıcı" }}
